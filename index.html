@@ -10,24 +10,26 @@
     <title>Library | The Odin Project</title>
 </head>
 <body>
-    <header>
-        <h1>Library</h1>
-    </header>
-
-    <div class="form">
+    
+    <h1>Library</h1>
+    
+    <div class="form-popup" id="form">
         <form action="">   
-            <label for="new-title">Title</label>
-            <input type="text" name="new-title" id="new-title" required>
-            <label for="new-author">Author</label>
-            <input type="text" name="new-author" id="new-author">
-            <label for="new-pages">Number of Pages</label>
-            <input type="number" name="new-pages" id="new-pages">
-            <label for="new-read">Have you read this book?</label>
-            <input type="checkbox" name="new-read" id="new-read">
-            <button id="add-book">Add Book</button>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" required>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+            <label for="pages">Number of Pages</label>
+            <input type="number" name="pages" id="pages" required>
+            <label for="read">Have you read this book?</label>
+            <input type="checkbox" name="read" id="read">
+            <div class="buttons">
+                <button id="add-book" type="button" onclick="addBookToLibrary()">Add Book</button>
+                <button id="cancel" onclick="toggleShowForm()">Cancel</button>
+            </div>
         </form>
     </div>
-
+    <div id="page-mask"></div>
     <div id="library">
         <!-- <div class="book card">
             <div class="info">
@@ -40,9 +42,8 @@
                 <label for="switch" class="toggle">Read</label>
                 <img src="" alt="minus">
             </div>
-        </div> -->
-
+        </div> -->        
     </div>
-    <!-- <button>Add Book</button> -->
+    <button id="add-book" onclick="toggleShowForm()">Add Book</button>
 </body>
 </html>

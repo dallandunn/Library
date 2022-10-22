@@ -7,16 +7,23 @@ function Book(title, author, num_pages, read) {
     this.author = author;
     this.num_pages = num_pages;
     this.read = read;
+    this.id = title.split(' ').join('-')
 }
 
 Book.prototype.info = function() {
-    return "<h2>" + this.title + "</h2> <p>by " + this.author + "</p><p>" + this.num_pages + " pages</p>";
+    return "<h2>" + this.title + "</h2> <p>by " + this.author + "</p><p>" + this.num_pages + " pages</p> <p>Read?</p>";
 }
 
-function addBookToLibrary(title, author, num_pages, read) {
+function addBookToLibrary() {
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const num_pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
     const newBook = new Book(title, author, num_pages, read);
     myLibrary.push(newBook);
-}   
+    toggleShowForm();
+    displayBooks(myLibrary);
+}
 
 function removeBookFromLibrary(bookToRemove) {
     myLibrary.splice(bookToRemove, 1);
@@ -24,14 +31,33 @@ function removeBookFromLibrary(bookToRemove) {
 
 function displayBooks(Books) {
     Books.forEach(book => {
-        const card = document.createElement('div');
-        const bookInfo = document.createElement('div')
-        bookInfo.innerHTML = book.info();
-        bookInfo.setAttribute('class', 'info');
-        card.setAttribute('class', 'book card');
-        card.appendChild(bookInfo);
-        document.getElementById('library').appendChild(card);
+        const title = document.getElementById(book.id);
+        if (!title) {
+            const card = document.createElement('div');
+            const bookInfo = document.createElement('div')
+            const read = document.createElement('input')
+            read.type = 'checkbox';
+            read.checked = book.read;
+            bookInfo.innerHTML = book.info();
+            bookInfo.setAttribute('class', 'info');
+            bookInfo.setAttribute('id', book.id);
+            card.setAttribute('class', 'book card');
+            card.appendChild(bookInfo);
+            card.appendChild(read);
+            document.getElementById('library').appendChild(card);
+        }
     });
 }
 
+function toggleShowForm() {
+    if (document.getElementById("form").style.display === "block"){
+        document.getElementById("form").style.display = "none";
+        document.getElementById("page-mask").style.display = "none";
+    } else {
+        document.getElementById("form").style.display = "block";
+        document.getElementById("page-mask").style.display = "block";
+    }
+}
+
 displayBooks(myLibrary);
+// document.getElementById('add-book').addEventListener('click', function() {console.log("clicked!")})
