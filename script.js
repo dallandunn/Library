@@ -1,6 +1,6 @@
 let AGoT = new Book("A Game of Thrones", "George R. R. Martin", 694, true);
-let theBigShort = new Book("The Big Short", "Michael Lewis", 320, true);
-let myLibrary = [AGoT, theBigShort];
+// let theBigShort = new Book("The Big Short", "Michael Lewis", 320, true);
+let myLibrary = [AGoT];
 
 function Book(title, author, num_pages, read) {
     this.title = title;
@@ -32,6 +32,11 @@ function removeBookFromLibrary() {
     displayBooks(myLibrary);
 }
 
+function toggleRead() {
+    const bookToChange = this.parentElement;
+    myLibrary[bookToChange.id].read = this.checked;
+}
+
 function displayBooks(Books) {
     Books.forEach(function(book, index) {
         const title = document.getElementById(book.id);
@@ -46,6 +51,7 @@ function displayBooks(Books) {
             remove.onclick = removeBookFromLibrary;
             read.type = 'checkbox';
             read.checked = book.read;
+            read.onchange = toggleRead;
             bookInfo.innerHTML = book.info();
             bookInfo.setAttribute('class', 'info');
             bookInfo.setAttribute('id', book.id);
