@@ -25,25 +25,35 @@ function addBookToLibrary() {
     displayBooks(myLibrary);
 }
 
-function removeBookFromLibrary(bookToRemove) {
-    myLibrary.splice(bookToRemove, 1);
+function removeBookFromLibrary() {
+    const bookToRemove = this.parentElement;
+    myLibrary.splice(bookToRemove.id, 1);
+    bookToRemove.remove();
+    displayBooks(myLibrary);
 }
 
 function displayBooks(Books) {
-    Books.forEach(book => {
+    Books.forEach(function(book, index) {
         const title = document.getElementById(book.id);
         if (!title) {
             const card = document.createElement('div');
             const bookInfo = document.createElement('div')
             const read = document.createElement('input')
+            const remove = document.createElement('button');
+            remove.setAttribute('class', 'delete-book');
+            remove.innerText = 'remove'
+            remove.setAttribute('id', 'remove-button' + index);
+            remove.onclick = removeBookFromLibrary;
             read.type = 'checkbox';
             read.checked = book.read;
             bookInfo.innerHTML = book.info();
             bookInfo.setAttribute('class', 'info');
             bookInfo.setAttribute('id', book.id);
             card.setAttribute('class', 'book card');
+            card.setAttribute('id', index);
             card.appendChild(bookInfo);
             card.appendChild(read);
+            card.appendChild(remove);
             document.getElementById('library').appendChild(card);
         }
     });
