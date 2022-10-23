@@ -1,17 +1,14 @@
-html, p, h1, h2, input, img, label {
+html, p, h1, h2, img, input {
     margin: 0;
     padding: 0;
+    background-color: #f1faee;
+    color: #1d3557;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 body{
     width: 100vw;
     height: 100vh;
-}
-
-header {
-    border: 1px solid black;
-    grid-area: header;
-    height: 100px;
 }
 
 .form-popup {
@@ -24,30 +21,168 @@ header {
     z-index: 9;
 }
 
+label {
+    background-color: inherit;
+    color: #f1faee;
+}
+
 form {
-    grid-area: form;
     display: flex;
     flex-direction: column;
+    background-color: #1d3557;
     padding: 10px;
-    background-color: white;
     height: 100%;
+    width: 300px;
+    border-radius: 30px;
+}
+
+#add {
+    background-color: #457b9d;
+}
+
+#cancel {
+    background-color: #e63946;
+}
+
+header {
+    display: flex;
+    margin-left: 30px;
+}
+
+h1 {
+    color: #a8dadc;
+    -webkit-text-stroke: 1px #457b9d;
+    text-shadow: 2px 5px rgba(29, 53, 87, 0.8);
+    font-size: 4rem;
+    margin: 0 30px 10px;
+}
+
+#add-book {
+    height: 30px;
+    width: 110px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    margin: 0 30px 10px;
+    background-color: #1d3557;
+    color: #f1faee;
+    border: 2px solid #457b9d;
+    cursor: pointer;
+}
+
+#add-book:hover {
+    color: #1d3557;
+    background-color: #a8dadc;
 }
 
 #library {
-    border: 1px solid black;
-    grid-area: library;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: 250px;
     gap: 10px;
-    padding: 10px;
-    height: 80%;
+    padding: 30px;
+    height: 100%;
 }
 
 .card {
-    border: 1px solid black;
+    border: 2px solid #457b9d;
+    border-radius: 20px;
+    padding: 20px;
     width: 250px;
     height: 250px;
+    box-shadow: 5px 5px rgba(29, 53, 87, 0.75);
+    background-color: #a8dadc;
+    position: relative;
+}
+
+.card p, h2 {
+    background-color: inherit;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.info:first-child {
+    padding: 10px;
+}
+
+.card:hover button {
+    color: #e63946;
+    display: block;
+}
+
+.info > * {
+    padding: 3px;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+}
+
+.switch-container p {
+    padding-left: 10px;
+}
+
+.delete-book {
+    cursor: pointer;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: inherit;
+    border: none;
+    display: none;
+}
+
+.delete-book::before {
+    display: inline-block;
+    content: "\2715";
+    font-size: 1.3rem;
+}
+
+input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.toggle {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 50px;
+    aspect-ratio: 2/1;
+    background: #e63946;
+    display: block;
+    border-radius: 50px;
+    position: relative;
+}
+
+.toggle:after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 2.5%;
+    width: 45%;
+    height: 90%;
+    background-color: #fff;
+    border-radius: 90%;
+    transition: 0.3s;
+}
+
+input:checked + .toggle{
+    background: #457b9d;
+}
+
+input:checked + .toggle:after {
+    left: calc(100% - 5%);
+	transform: translateX(-100%);
+}
+
+.toggle:active:after {
+    width: 65%;
 }
 
 #page-mask {

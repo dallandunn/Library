@@ -10,9 +10,8 @@
     <title>Library | The Odin Project</title>
 </head>
 <body>
-    
+
     <h1>Library</h1>
-    
     <div class="form-popup" id="form">
         <form action="">   
             <label for="title">Title</label>
@@ -21,10 +20,10 @@
             <input type="text" name="author" id="author" required>
             <label for="pages">Number of Pages</label>
             <input type="number" name="pages" id="pages" required>
-            <label for="read">Have you read this book?</label>
-            <input type="checkbox" name="read" id="read">
+            <label for="book-read" class="toggle">Have you read this book?</label>
+            <input type="checkbox" name="read" id="book-read">
             <div class="buttons">
-                <button id="add-book" type="button" onclick="addBookToLibrary()">Add Book</button>
+                <button id="add" type="submit" onclick="addBookToLibrary()">Add Book</button>
                 <button id="cancel" onclick="toggleShowForm()">Cancel</button>
             </div>
         </form>
@@ -32,18 +31,7 @@
     <div id="page-mask"></div>
     <button id="add-book" onclick="toggleShowForm()">Add Book</button>
     <div id="library">
-        <!-- <div class="book card">
-            <div class="info">
-                <h2>Title</h2>
-                <p>by Author</p>
-                <p>500 pages</p>
-            </div>
-            <div class="options">
-                <input type="checkbox" id="switch">
-                <label for="switch" class="toggle">Read</label>
-                <img src="" alt="minus">
-            </div>
-        </div> -->        
+        
     </div>
 </body>
 </html>

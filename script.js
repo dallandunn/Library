@@ -1,17 +1,42 @@
 let AGoT = new Book("A Game of Thrones", "George R. R. Martin", 694, true);
-// let theBigShort = new Book("The Big Short", "Michael Lewis", 320, true);
-let myLibrary = [AGoT];
+let theBigShort = new Book("The Big Short", "Michael Lewis", 320, true);
+let myLibrary = [AGoT, theBigShort];
 
 function Book(title, author, num_pages, read) {
     this.title = title;
     this.author = author;
     this.num_pages = num_pages;
     this.read = read;
-    this.id = title.split(' ').join('-')
+    this.id = title.split(' ').join('-');
 }
 
 Book.prototype.info = function() {
-    return "<h2>" + this.title + "</h2> <p>by " + this.author + "</p><p>" + this.num_pages + " pages</p> <p>Read?</p>";
+    return "<h2>" + this.title + "</h2> <p>by " + this.author + "</p><p>" + this.num_pages + " pages</p>";
+}
+
+Book.prototype.appendReadToggle = function(parentElement, index) {
+    const container = document.createElement('div');
+    const read = document.createElement('input');
+    const label = document.createElement('label');
+    const text = document.createElement('p');
+
+    container.setAttribute('class', 'switch-container');
+
+    read.type = 'checkbox';
+    read.checked = this.read;
+    read.id = 'read' + index;
+    read.onchange = toggleRead;
+
+    label.htmlFor = read.id;
+    label.setAttribute('class', 'toggle');
+
+    text.innerText = 'Read?';
+
+    container.appendChild(read);
+    container.appendChild(label);
+    container.appendChild(text);
+    parentElement.appendChild(container);
+
 }
 
 function addBookToLibrary() {
@@ -42,24 +67,19 @@ function displayBooks(Books) {
         const title = document.getElementById(book.id);
         if (!title) {
             const card = document.createElement('div');
-            const bookInfo = document.createElement('div')
-            const read = document.createElement('input')
+            const bookInfo = document.createElement('div');
             const remove = document.createElement('button');
             remove.setAttribute('class', 'delete-book');
-            remove.innerText = 'remove'
-            remove.setAttribute('id', 'remove-button' + index);
+            remove.setAttribute('id', 'remove-button');
             remove.onclick = removeBookFromLibrary;
-            read.type = 'checkbox';
-            read.checked = book.read;
-            read.onchange = toggleRead;
             bookInfo.innerHTML = book.info();
             bookInfo.setAttribute('class', 'info');
             bookInfo.setAttribute('id', book.id);
             card.setAttribute('class', 'book card');
             card.setAttribute('id', index);
             card.appendChild(bookInfo);
-            card.appendChild(read);
             card.appendChild(remove);
+            book.appendReadToggle(card, index);
             document.getElementById('library').appendChild(card);
         }
     });
@@ -76,4 +96,3 @@ function toggleShowForm() {
 }
 
 displayBooks(myLibrary);
-// document.getElementById('add-book').addEventListener('click', function() {console.log("clicked!")})
