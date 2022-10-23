@@ -43,7 +43,7 @@ function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const num_pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
+    const read = document.getElementById('popup-read').checked;
     const newBook = new Book(title, author, num_pages, read);
     myLibrary.push(newBook);
     toggleShowForm();

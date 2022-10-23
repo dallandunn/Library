@@ -14,16 +14,20 @@
     <h1>Library</h1>
     <div class="form-popup" id="form">
         <form action="">   
+            <h3>Add a book</h3>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" required>
             <label for="author">Author</label>
             <input type="text" name="author" id="author" required>
             <label for="pages">Number of Pages</label>
             <input type="number" name="pages" id="pages" required>
-            <label for="book-read" class="toggle">Have you read this book?</label>
-            <input type="checkbox" name="read" id="book-read">
+            <div class="switch-container">
+                <p id="question">Have you read this book?</p>
+                <input type="checkbox" name="popup-read" id="popup-read">
+                <label for="popup-read" class="toggle"></label>
+            </div>
             <div class="buttons">
-                <button id="add" type="submit" onclick="addBookToLibrary()">Add Book</button>
+                <button id="add" type="button" onclick="addBookToLibrary()">Add Book</button>
                 <button id="cancel" onclick="toggleShowForm()">Cancel</button>
             </div>
         </form>

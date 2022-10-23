@@ -1,4 +1,4 @@
-html, p, h1, h2, img, input {
+html, p, h1, h2, h3, img, input {
     margin: 0;
     padding: 0;
     background-color: #f1faee;
@@ -17,8 +17,8 @@ body{
     bottom: 50%;
     right: 40%;
     width: 350px;
-    height: 300px;
-    z-index: 9;
+    height: 310px;
+    z-index: 99;
 }
 
 label {
@@ -27,17 +27,56 @@ label {
 }
 
 form {
+    border: 3px solid #f1faee;
     display: flex;
     flex-direction: column;
     background-color: #1d3557;
     padding: 10px;
+    margin: 0;
     height: 100%;
-    width: 300px;
-    border-radius: 30px;
+    width: 100%;
+    border-radius: 20px;
+    gap: 10px;
 }
 
-#add {
+input[type=text], input[type=number] {
+    height: 20px;   
+    text-indent: 5px;
+}
+
+input:focus {
+    outline: 2px solid #457b9d;
+    box-shadow: none;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.buttons button {
+    border: none;
+    width: 45%;
+    cursor: pointer;
     background-color: #457b9d;
+    color: #f1faee;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.buttons button:hover {
+    border: 2px solid #f1faee;
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+h3 {
+    color: #f1faee;
+    background-color: #1d3557;
+    align-self: center;
 }
 
 #cancel {
@@ -74,6 +113,12 @@ h1 {
     background-color: #a8dadc;
 }
 
+#question {
+    color: #f1faee;
+    margin-right: 10px;
+    padding-left: 2px;
+}
+
 #library {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -100,6 +145,7 @@ h1 {
 
 .card:hover {
     transform: scale(1.05);
+    transition: 0.2s;
 }
 
 .info:first-child {
@@ -108,7 +154,8 @@ h1 {
 
 .card:hover button {
     color: #e63946;
-    display: block;
+    transition: 0.9s;
+    opacity: 1;
 }
 
 .info > * {
@@ -122,6 +169,8 @@ h1 {
 
 .switch-container p {
     padding-left: 10px;
+    color: inherit;
+    background: inherit;
 }
 
 .delete-book {
@@ -134,7 +183,8 @@ h1 {
     right: 0;
     background-color: inherit;
     border: none;
-    display: none;
+    opacity: 0;
+    color: #e63946;
 }
 
 .delete-book::before {
@@ -167,7 +217,7 @@ input[type=checkbox] {
     left: 2.5%;
     width: 45%;
     height: 90%;
-    background-color: #fff;
+    background-color: #f1faee;
     border-radius: 90%;
     transition: 0.3s;
 }
@@ -189,6 +239,7 @@ input:checked + .toggle:after {
     display: none;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
+    z-index: 9;
     top: 0;
     right: 0;
     bottom: 0;
